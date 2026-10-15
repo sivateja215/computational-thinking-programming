@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genetic Sequence Motif Finder</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Genetic Sequence Motif Finder</h1>
+    <p>Hashing &middot; Divide &amp; Conquer &middot; Multiprocessing &middot; Dynamic Programming</p>
+  </div>
+  <div class="top-right">
+    <span class="pill" id="cpuPill">CPU cores: ...</span>
+    <button class="ghost" id="themeBtn" title="Toggle dark / light">Theme</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="panel controls">
+    <h2>1. Input</h2>
+    <label>Sample dataset
+      <select id="sample"></select>
+    </label>
+    <label>FASTA sequences (paste, edit or upload)
+      <textarea id="fasta" spellcheck="false" placeholder=">seq1&#10;ATGCGT..."></textarea>
+    </label>
+    <div class="row">
+      <label class="file">Upload file<input type="file" id="file" accept=".fasta,.fa,.txt"></label>
+      <select id="alphabet" title="Alphabet">
+        <option value="auto">Auto-detect</option><option value="dna">DNA</option><option value="protein">Protein</option>
+      </select>
+    </div>
+
+    <h2>2. Motif search</h2>
+    <div class="grid2">
+      <label>k min<input type="number" id="kmin" value="3" min="1" max="12"></label>
+      <label>k max<input type="number" id="kmax" value="6" min="1" max="12"></label>
+      <label>Min occurrences<input type="number" id="minOcc" value="2" min="1"></label>
+      <label>Min sequences<input type="number" id="minSeq" value="2" min="1"></label>
+      <label>Sort by
+        <select id="sort"><option value="occurrences">Occurrences</option><option value="sequences">Sequences</option><option value="length">Length</option></select>
+      </label>
+      <label>Show top<input type="number" id="top" value="30" min="1" max="200"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="maximal"> Maximal motifs only</label>
+
+    <h2>3. Processing</h2>
+    <div class="seg" id="modeSeg">
+      <button data-mode="parallel" class="on">Multiprocessing</button>
+      <button data-mode="sequential">Sequential</button>
+    </div>
+    <label>Worker processes<input type="number" id="workers" value="2" min="1" max="64"></label>
+    <label class="check"><input type="checkbox" id="align" checked> DP alignment (LCS + Smith-Waterman)</label>
+
+    <button class="primary" id="runBtn">Find motifs</button>
+    <button class="secondary" id="benchBtn">Run benchmark</button>
+    <div id="status" class="status" role="status"></div>
+  </aside>
+
+  <main>
+    <nav class="tabs" id="tabs">
+      <button data-tab="overview" class="on">Overview</button>
+      <button data-tab="map">Sequence map</button>
+      <button data-tab="align">Alignment</button>
+      <button data-tab="bench">Benchmark</button>
+    </nav>
+
+    <section id="tab-overview" class="tab">
+      <div class="empty" id="emptyState">
+        <h3>Ready when you are</h3>
+        <p>Pick a sample dataset on the left and press <b>Find motifs</b>. Results, a sequence map, DP alignments and a benchmark will appear here.</p>
+      </div>
+      <div id="results" hidden>
+        <div class="stats" id="stats"></div>
+        <div class="panel">
+          <h2>Top recurring motifs <small>(click a bar or row to inspect)</small></h2>
+          <div id="bars" class="bars"></div>
+        </div>
+        <div class="panel">
+          <div class="table-head">
+            <h2>All motifs</h2>
+            <input type="search" id="filter" placeholder="Filter motifs...">
+            <button class="ghost" id="csvBtn">Download CSV</button>
+            <button class="ghost" id="jsonBtn">Download JSON</button>
+          </div>
+          <div class="table-wrap"><table id="motifTable"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-map" class="tab" hidden>
+      <div class="panel">
+        <div class="table-head"><h2>Where does the motif occur?</h2><select id="mapMotif"></select></div>
+        <p class="hint" id="mapHint">Run an analysis first.</p>
+        <div id="mapBox" class="map-box"></div>
+      </div>
+    </section>
+
+    <section id="tab-align" class="tab" hidden>
+      <div class="panel"><h2>LCS similarity matrix</h2><p class="hint" id="alignHint">Run an analysis with DP alignment enabled.</p><div id="heat"></div></div>
+      <div id="pairs"></div>
+    </section>
+
+    <section id="tab-bench" class="tab" hidden>
+      <div class="panel">
+        <h2>Sequential vs multiprocessing</h2>
+        <p class="hint" id="benchHint">Press <b>Run benchmark</b> to time the same search with 1, 2, 4... workers.</p>
+        <div id="benchOut"></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

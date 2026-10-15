@@ -1,0 +1,354 @@
+{
+  "meta": {
+    "input": "C:\\Users\\Siva Teja\\OneDrive\\Desktop\\genetic-motif-finder\\data\\sequences.fasta",
+    "alphabet": "dna",
+    "kmin": 3,
+    "kmax": 6,
+    "mode": "multiprocessing (16 workers)",
+    "seconds": 0.1939
+  },
+  "motifs": [
+    {
+      "motif": "ATGCGT",
+      "length": 6,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          1,
+          10
+        ],
+        "Sequence_2": [
+          3
+        ],
+        "Sequence_3": [
+          3,
+          11
+        ]
+      }
+    },
+    {
+      "motif": "ATGCG",
+      "length": 5,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          1,
+          10
+        ],
+        "Sequence_2": [
+          3
+        ],
+        "Sequence_3": [
+          3,
+          11
+        ]
+      }
+    },
+    {
+      "motif": "TGCGT",
+      "length": 5,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          2,
+          11
+        ],
+        "Sequence_2": [
+          4
+        ],
+        "Sequence_3": [
+          4,
+          12
+        ]
+      }
+    },
+    {
+      "motif": "ATGC",
+      "length": 4,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          1,
+          10
+        ],
+        "Sequence_2": [
+          3
+        ],
+        "Sequence_3": [
+          3,
+          11
+        ]
+      }
+    },
+    {
+      "motif": "GCGT",
+      "length": 4,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          3,
+          12
+        ],
+        "Sequence_2": [
+          5
+        ],
+        "Sequence_3": [
+          5,
+          13
+        ]
+      }
+    },
+    {
+      "motif": "TGCG",
+      "length": 4,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          2,
+          11
+        ],
+        "Sequence_2": [
+          4
+        ],
+        "Sequence_3": [
+          4,
+          12
+        ]
+      }
+    },
+    {
+      "motif": "ATG",
+      "length": 3,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          1,
+          10
+        ],
+        "Sequence_2": [
+          3
+        ],
+        "Sequence_3": [
+          3,
+          11
+        ]
+      }
+    },
+    {
+      "motif": "CGT",
+      "length": 3,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          4,
+          13
+        ],
+        "Sequence_2": [
+          6
+        ],
+        "Sequence_3": [
+          6,
+          14
+        ]
+      }
+    },
+    {
+      "motif": "GCG",
+      "length": 3,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          3,
+          12
+        ],
+        "Sequence_2": [
+          5
+        ],
+        "Sequence_3": [
+          5,
+          13
+        ]
+      }
+    },
+    {
+      "motif": "TGC",
+      "length": 3,
+      "occurrences": 5,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          2,
+          11
+        ],
+        "Sequence_2": [
+          4
+        ],
+        "Sequence_3": [
+          4,
+          12
+        ]
+      }
+    },
+    {
+      "motif": "GATGCG",
+      "length": 6,
+      "occurrences": 3,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          9
+        ],
+        "Sequence_2": [
+          2
+        ],
+        "Sequence_3": [
+          10
+        ]
+      }
+    },
+    {
+      "motif": "GATGC",
+      "length": 5,
+      "occurrences": 3,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          9
+        ],
+        "Sequence_2": [
+          2
+        ],
+        "Sequence_3": [
+          10
+        ]
+      }
+    },
+    {
+      "motif": "GATG",
+      "length": 4,
+      "occurrences": 3,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          9
+        ],
+        "Sequence_2": [
+          2
+        ],
+        "Sequence_3": [
+          10
+        ]
+      }
+    },
+    {
+      "motif": "GAT",
+      "length": 3,
+      "occurrences": 3,
+      "sequences_found": 3,
+      "positions": {
+        "Sequence_1": [
+          9
+        ],
+        "Sequence_2": [
+          2
+        ],
+        "Sequence_3": [
+          10
+        ]
+      }
+    },
+    {
+      "motif": "CGATGC",
+      "length": 6,
+      "occurrences": 2,
+      "sequences_found": 2,
+      "positions": {
+        "Sequence_1": [
+          8
+        ],
+        "Sequence_2": [
+          1
+        ]
+      }
+    },
+    {
+      "motif": "GCGTAC",
+      "length": 6,
+      "occurrences": 2,
+      "sequences_found": 2,
+      "positions": {
+        "Sequence_1": [
+          3
+        ],
+        "Sequence_2": [
+          5
+        ]
+      }
+    },
+    {
+      "motif": "TGCGTA",
+      "length": 6,
+      "occurrences": 2,
+      "sequences_found": 2,
+      "positions": {
+        "Sequence_1": [
+          2
+        ],
+        "Sequence_2": [
+          4
+        ]
+      }
+    },
+    {
+      "motif": "CGATG",
+      "length": 5,
+      "occurrences": 2,
+      "sequences_found": 2,
+      "positions": {
+        "Sequence_1": [
+          8
+        ],
+        "Sequence_2": [
+          1
+        ]
+      }
+    },
+    {
+      "motif": "CGTAC",
+      "length": 5,
+      "occurrences": 2,
+      "sequences_found": 2,
+      "positions": {
+        "Sequence_1": [
+          4
+        ],
+        "Sequence_2": [
+          6
+        ]
+      }
+    },
+    {
+      "motif": "GCGTA",
+      "length": 5,
+      "occurrences": 2,
+      "sequences_found": 2,
+      "positions": {
+        "Sequence_1": [
+          3
+        ],
+        "Sequence_2": [
+          5
+        ]
+      }
+    }
+  ]
+}
