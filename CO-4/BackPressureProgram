@@ -1,0 +1,30 @@
+import asyncio
+
+queue = asyncio.Queue(maxsize=3)
+
+async def producer():
+    for i in range(10):
+        await queue.put(i)
+        print("Produced:", i)
+
+    print("Producer finished")
+
+
+async def consumer():
+    for i in range(10):
+        item = await queue.get()
+
+        print("Consumed:", item)
+
+        await asyncio.sleep(1)
+
+        queue.task_done()
+
+
+async def main():
+    await asyncio.gather(
+        producer(),
+        consumer()
+    )
+
+asyncio.run(main())

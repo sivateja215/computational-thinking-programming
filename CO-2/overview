@@ -1,0 +1,82 @@
+Q1. E-Commerce Product Search — 8 Marks
+An e-commerce company stores product information using lists, dictionaries and sets. Each product record contains a product ID, category, price and a set of tags. The development team currently uses nested loops to identify products belonging to a specified category and having at least one matching tag.
+
+(a) Identify where a sequence, mapping and set would be most appropriate in this application. [3]
+
+(b) Rewrite the filtering operation using appropriate Pythonic constructs such as comprehensions and set operations. [3]
+
+(c) Explain why the selected data structures are preferable to repeatedly searching through lists. [2]
+
+Solution:
+(a) Where sequence, mapping, and set fit
+Data structure	Used for	Why
+Sequence (list)	Storing the full collection of product records	Products need to be iterated over, kept in insertion order, and possibly paginated/displayed as a list
+Mapping (dict)	Each product record itself ({'id':..., 'category':..., 'price':..., 'tags':...}) — or an index like category → list of products	Fast O(1) average-time lookup by key (e.g. product ID or category), instead of scanning every record
+Set	The tags field of each product, and the "search tags" the user supplies	Tags have no duplicates and only membership/intersection matters — sets give O(1) average membership tests and fast intersection
+(b) Rewriting the filter with comprehensions + set operations
+Algorithm
+Store all product records in a list of dictionaries.
+Set the required target_category and search_tags.
+In the nested-loop method, check each product's category and compare its tags with every search tag.
+In the Pythonic method, convert search_tags into a set.
+Check the product category and use set intersection (&) to find common tags.
+Add matching products to the result and display the results from both methods.
+Naive (nested-loop) version — what the team currently does:
+
+def find_products_nested(products, target_category, search_tags):
+    results = []
+    for product in products:
+        if product['category'] == target_category:
+            match = False
+            for tag in product['tags']:
+                for s_tag in search_tags:
+                    if tag == s_tag:
+                        match = True
+            if match:
+                results.append(product)
+    return results
+Pythonic version — comprehension + set intersection:
+
+def find_products(products, target_category, search_tags):
+    search_tags = set(search_tags)  # ensure O(1) membership / fast intersection
+    return [
+        product for product in products
+        if product['category'] == target_category
+        and product['tags'] & search_tags        # set intersection
+    ]
+Example data:
+
+products = [
+    {'id': 1, 'category': 'electronics', 'price': 299, 'tags': {'wireless', 'audio'}},
+    {'id': 2, 'category': 'electronics', 'price': 899, 'tags': {'gaming', 'laptop'}},
+    {'id': 3, 'category': 'furniture',   'price': 150, 'tags': {'wooden', 'chair'}},
+    {'id': 4, 'category': 'electronics', 'price': 59,  'tags': {'bluetooth', 'audio'}},
+    {'id': 5, 'category': 'furniture',   'price': 220, 'tags': {'wooden', 'table'}},
+]
+
+target_category = 'electronics'
+search_tags = ['audio', 'bluetooth']
+product['tags'] & search_tags returns a non-empty set (truthy) if there's at least one common tag — that single expression replaces the entire inner double loop.
+
+Output:
+
+[
+ {'id': 1, 'category': 'electronics', 'price': 299,
+  'tags': {'wireless', 'audio'}},
+
+ {'id': 4, 'category': 'electronics', 'price': 59,
+  'tags': {'bluetooth', 'audio'}}
+]
+(c) Why these structures are preferable to repeatedly searching lists
+Lists force linear scanning. Checking category == target or tag in tag_list means walking through elements one by one until a match is found (or the list ends) — there's no way to "jump" to the right entry.
+Dictionaries provide fast key-based lookup. A product can be represented using a dictionary so that fields such as id, category, price, and tags can be accessed directly using their keys.
+Sets eliminate the nested loop for tag matching. Instead of comparing every product tag with every search tag, set intersection finds common tags efficiently.
+Sets automatically remove duplicates. If the same tag appears more than once, a set stores it only once.
+Time Complexity
+Approach	Category filter	Tag matching (per product)	Overall (N products, n/m tags)
+Nested loops (original)	O(N) scan	O(n·m) comparisons	O(N · n · m)
+Comprehension + set intersection	O(N) scan	O(min(n, m)) average	O(N · min(n, m))
+Where:
+
+N = total number of products
+n, m = number of tags per product / number of search tags
